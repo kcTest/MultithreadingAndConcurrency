@@ -34,6 +34,10 @@ public class ConfigProperties {
 		return readProperty(key);
 	}
 	
+	public int getIntValue(String key) {
+		return Integer.parseInt(readProperty(key));
+	}
+	
 	private String readProperty(String key) {
 		return properties.getProperty(key);
 	}

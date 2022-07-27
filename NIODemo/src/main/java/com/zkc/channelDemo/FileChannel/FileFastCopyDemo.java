@@ -1,4 +1,4 @@
-package com.zkc.channelDemo;
+package com.zkc.channelDemo.FileChannel;
 
 import com.zkc.NIODemoConfig;
 import com.zkc.util.IOUtil;
@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -24,12 +23,12 @@ public class FileFastCopyDemo {
 	 *
 	 */
 	private static void fastCopyResourceFile() {
-		String srcResName = NIODemoConfig.FILE_SRC_RESOURCE_NAME;
-		String srcPath = IOUtil.getResourcePath(srcResName);
+		String srcFileName = NIODemoConfig.SRC_FILENAME_COPY;
+		String srcPath = IOUtil.getResourcePath(srcFileName);
 		Logger.debug("srcPath=" + srcPath);
 		
-		String destResName = NIODemoConfig.FILE_DEST_RESOURCE_NAME;
-		String destPath = IOUtil.buildResourcePath(destResName);
+		String destFileName = NIODemoConfig.DEST_FILENAME_COPY;
+		String destPath = IOUtil.buildResourcePath(destFileName);
 		Logger.debug("destPath=" + destPath);
 		
 		nioFastCopyFile(srcPath, destPath);

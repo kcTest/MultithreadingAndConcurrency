@@ -1,4 +1,4 @@
-package com.zkc.channelDemo;
+package com.zkc.channelDemo.FileChannel;
 
 import com.zkc.NIODemoConfig;
 import com.zkc.util.IOUtil;
@@ -12,8 +12,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
- * FileChannel（文件通道）是专门操作文件的通道。通过FileChannel，既可以从一个文件中读取数据，也可以将数据写入文件
- * 中。FileChannel为阻塞模式，不能设置为非阻塞模式
+ * FileChannel（文件通道）是专门操作文件的通道。通过FileChannel，既可以从一个文件中读取数据，也可以将数据写入文件中。
+ * FileChannel为阻塞模式，不能设置为非阻塞模式。
+ * FileChannel并没有继承SelectableChannel，因此不是可选择通道。
+ * FileChannel不能与选择器一起使用。
  */
 public class FileCopyDemo {
 	
@@ -25,12 +27,12 @@ public class FileCopyDemo {
 	 *
 	 */
 	private static void copyResourceFile() {
-		String srcResName = NIODemoConfig.FILE_SRC_RESOURCE_NAME;
-		String srcPath = IOUtil.getResourcePath(srcResName);
+		String srcFileName = NIODemoConfig.SRC_FILENAME_COPY;
+		String srcPath = IOUtil.getResourcePath(srcFileName);
 		Logger.debug("srcPath=" + srcPath);
 		
-		String destResName = NIODemoConfig.FILE_DEST_RESOURCE_NAME;
-		String destPath = IOUtil.buildResourcePath(destResName);
+		String destFileName = NIODemoConfig.DEST_FILENAME_COPY;
+		String destPath = IOUtil.buildResourcePath(destFileName);
 		Logger.debug("destPath=" + destPath);
 		
 		nioCopyFile(srcPath, destPath);
