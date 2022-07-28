@@ -9,6 +9,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Iterator;
 
+/**
+ * 服务器监听通道ServerSocketChannel仅支持Accept（接收到新连接）IO事件，
+ * 而传输通道SocketChannel则不同，它不支持Accept类型的IO事件
+ */
 public class NIODiscardServer {
 	public static void main(String[] args) {
 		startServer();

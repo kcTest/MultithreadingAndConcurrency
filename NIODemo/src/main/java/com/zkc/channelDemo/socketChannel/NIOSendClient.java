@@ -39,7 +39,7 @@ public class NIOSendClient {
 			String srcFileName = NIODemoConfig.SRC_FILENAME_SOCKET_SEND;
 			String srcPath = IOUtil.getResourcePath(srcFileName);
 			Logger.debug("srcPath=" + srcPath);
-			File srcFile = new File(srcFileName);
+			File srcFile = new File(srcPath);
 			if (!srcFile.exists()) {
 				Logger.debug("srcFile 不存在");
 				return;

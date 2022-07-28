@@ -14,6 +14,7 @@ public class NIODemoConfig extends ConfigProperties {
 	public static final String SOCKET_SERVER_IP = singleton.getValue("socket.server.ip");
 	public static final int SOCKET_SERVER_PORT = singleton.getIntValue("socket.server.port");
 	public static final int SEND_BUFFER_SIZE = singleton.getIntValue("send.buffer.size");
+	public static final String DEST_DIRECTORY_SOCKET_RECEIVE = singleton.getValue("dest.directory.socket.receive");
 	
 	
 	public NIODemoConfig(String fileName) {
