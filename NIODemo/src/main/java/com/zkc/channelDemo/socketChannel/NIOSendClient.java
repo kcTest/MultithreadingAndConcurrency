@@ -51,7 +51,7 @@ public class NIOSendClient {
 			while (!socketChannel.finishConnect()) {
 				Logger.debug("正在连接服务器...");
 			}
-			Logger.debug("成功连接服务端");
+			Logger.debug("连接服务器成功");
 			
 			//发送文件名称长度、文件名称、文件长度、文件内容
 			
