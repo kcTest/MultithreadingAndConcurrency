@@ -1,4 +1,4 @@
-package com.zkc.channelDemo.FileChannel;
+package com.zkc.nio.channelDemo.FileChannel;
 
 import com.zkc.NIODemoConfig;
 import com.zkc.util.IOUtil;

@@ -1,12 +1,10 @@
-package com.zkc.channelDemo.socketChannel;
+package com.zkc.nio.channelDemo.socketChannel;
 
 import com.zkc.NIODemoConfig;
 import com.zkc.util.IOUtil;
 import com.zkc.util.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;

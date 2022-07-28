@@ -1,4 +1,4 @@
-package com.zkc.channelDemo.socketChannel;
+package com.zkc.nio.channelDemo.socketChannel;
 
 import com.zkc.NIODemoConfig;
 import com.zkc.util.Logger;
