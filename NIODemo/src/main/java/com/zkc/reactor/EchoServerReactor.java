@@ -48,7 +48,9 @@ public class EchoServerReactor implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (!Thread.interrupted() && selector.select() > 0) {
+			while (!Thread.interrupted()) {
+				//先筛选
+				selector.select();
 				Set<SelectionKey> keys = selector.selectedKeys();
 				for (SelectionKey key : keys) {
 					//分发
@@ -84,7 +86,7 @@ public class EchoServerReactor implements Runnable {
 					//处理数据回显
 					new EchoHandler(selector, channel);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

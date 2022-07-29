@@ -31,4 +31,5 @@ public class Logger {
 		}
 		System.out.printf("%20s |>  %s%n", String.format("[%s|%s]", Thread.currentThread().getName(), ReflectionUtil.getCallMethod()), sb);
 	}
+	
 }
