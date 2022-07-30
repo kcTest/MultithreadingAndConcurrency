@@ -2,6 +2,7 @@ package com.zkc.util;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.LockSupport;
 
 public class ThreadUtil {
 	
@@ -114,4 +115,12 @@ public class ThreadUtil {
 	public static String getCurThreadName() {
 		return Thread.currentThread().getName();
 	}
+	
+	/**
+	 * 线程睡眠 单位:毫秒
+	 */
+	public static void sleepMilliseconds(int millisecond) {
+		LockSupport.parkNanos(millisecond * 1000L * 1000L);
+	}
+	
 }
