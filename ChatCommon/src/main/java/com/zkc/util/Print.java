@@ -19,4 +19,8 @@ public class Print {
 			System.out.println(s);
 		});
 	}
+	
+	public static void syncTco(String msg) {
+		System.out.println("[" + Thread.currentThread().getName() + "]" + ": " + msg);
+	}
 }

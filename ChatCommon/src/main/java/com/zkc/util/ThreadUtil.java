@@ -19,6 +19,10 @@ public class ThreadUtil {
 		return SeqOrScheduledTargetThreadPoolLazyHolder.EXECUTOR;
 	}
 	
+	public static Thread getCurrentThread() {
+		return Thread.currentThread();
+	}
+	
 	/**
 	 * 懒汉式单例创建线程池 用于定时任务、顺序排队执行任务
 	 */
