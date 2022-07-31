@@ -123,4 +123,10 @@ public class ThreadUtil {
 		LockSupport.parkNanos(millisecond * 1000L * 1000L);
 	}
 	
+	/**
+	 * 线程睡眠 单位:秒
+	 */
+	public static void sleepSeconds(int second) {
+		LockSupport.parkNanos(second * 1000L * 1000L * 1000L);
+	}
 }
