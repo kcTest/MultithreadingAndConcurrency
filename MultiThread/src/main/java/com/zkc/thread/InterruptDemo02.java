@@ -1,4 +1,4 @@
-package com.zkc.basic;
+package com.zkc.thread;
 
 import com.zkc.util.Print;
 import com.zkc.util.ThreadUtil;

@@ -1,4 +1,4 @@
-package com.zkc.basic;
+package com.zkc.thread;
 
 import com.zkc.util.Print;
 import com.zkc.util.ThreadUtil;
@@ -22,7 +22,7 @@ public class YieldDemo {
 		Thread thread2 = new YieldThread();
 		//设置最低优先级
 		thread2.setPriority(Thread.MIN_PRIORITY);
-		Print.tfo("启动线程");
+		Print.tco("启动线程");
 		/*从输出的结果可以看出，优先级高的YieldThread-1执行的次数比优先级低的YieldThread-2执行的次数多很多。
 		得到的结论是：线程调用yield之后，操作系统在重新进行线程调度时偏向于将执行机会让给优先级较高的线程*/
 		thread1.start();
@@ -35,7 +35,7 @@ public class YieldDemo {
 	private static Map<String, AtomicInteger> countMap = new HashMap<>();
 	
 	private static void printCountMap() {
-		Print.tfo("countMap= " + countMap);
+		Print.tco("countMap= " + countMap);
 	}
 	
 	private static class YieldThread extends Thread {
@@ -49,7 +49,7 @@ public class YieldDemo {
 		@Override
 		public void run() {
 			for (int i = 0; i < MAX && index.get() < MAX; i++) {
-				Print.tfo("线程优先级：" + getPriority());
+				Print.tco("线程优先级：" + getPriority());
 				index.incrementAndGet();
 				//统计
 				countMap.get(this.getName()).incrementAndGet();
@@ -60,7 +60,7 @@ public class YieldDemo {
 			}
 			//输出所有线程的执行次数
 			printCountMap();
-			Print.tfo(getName() + " 运行结束.");
+			Print.tco(getName() + " 运行结束.");
 		}
 	}
 }

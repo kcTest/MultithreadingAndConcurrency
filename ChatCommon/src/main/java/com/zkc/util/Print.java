@@ -13,7 +13,7 @@ public class Print {
 		});
 	}
 	
-	public static void tfo(String msg) {
+	public static void tco(String msg) {
 		String s = "[" + Thread.currentThread().getName() + "]" + ": " + msg;
 		ThreadUtil.sqlExecute(() -> {
 			System.out.println(s);

@@ -1,4 +1,4 @@
-package com.zkc.basic;
+package com.zkc.thread;
 
 import com.zkc.util.Print;
 import com.zkc.util.ThreadUtil;
@@ -34,7 +34,7 @@ public class NameDemo {
 		public void run() {
 			for (int i = 0; i < MAX; i++) {
 				ThreadUtil.sleepMilliseconds(500);
-				Print.tfo("线程执行轮次:" + i);
+				Print.tco("线程执行轮次:" + i);
 			}
 		}
 	}

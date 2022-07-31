@@ -1,4 +1,4 @@
-package com.zkc.basic;
+package com.zkc.thread;
 
 import com.zkc.util.Print;
 import com.zkc.util.ThreadUtil;
@@ -40,7 +40,7 @@ public class SleepDemo {
 			} catch (InterruptedException e) {
 				Print.cfo(getName() + " 发生异常被中断.");
 			}
-			Print.tfo(getName() + " 运行结束.");
+			Print.tco(getName() + " 运行结束.");
 		}
 	}
 }
