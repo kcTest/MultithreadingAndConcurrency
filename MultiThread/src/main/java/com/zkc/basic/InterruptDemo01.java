@@ -42,7 +42,6 @@ public class InterruptDemo01 {
 		Print.cfo("程序运行结束.");
 	}
 	
-	public static final int MAX = 5;
 	public static final int SLEEP_GAP = 5000;
 	
 	private static class SleepThread extends Thread {

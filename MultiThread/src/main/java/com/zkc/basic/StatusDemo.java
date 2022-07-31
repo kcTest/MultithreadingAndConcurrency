@@ -13,8 +13,14 @@ import java.util.Set;
  * <p>               Java语言中，并没有细分这两种状态，而是将这两种状态合并成同一种状态 RUNNABLE状态
  * BLOCKED, //阻塞
  * WAITING, //等待
+ * 线程的WAITING（等待）状态表示线程在等待被唤醒。处于WAITING状态的线程不会被分配CPU时间片。
+ * 执行以下两个操作，当前线程将处于WAITING状态：
+ * （1）执行没有时限（timeout）参数的thread.join()调用：在线程合并场景中，若线程A调用B.join()去合入B线程，则在B执行期间线
+ * <p>  程A处于WAITING状态，一直等线程B执行完成。
+ * （2）执行没有时限（timeout）参数的object.wait()调用：指一个拥有object对象锁的线程，进入相应的代码临界区后，调用相应的
+ * <p>  object的wait()方法去等待其“对象锁”（Object Monitor）上的信号，若“对象锁”上没有信号，则当前线程处于WAITING状态
  * TIMED_WAITING, //限时等待
- * <p>              线程处于限时等待状态。能让线程处于限时等待状态的操作大致有以下几种：
+ * <p>              线程不会被分配CPU时间片，它们要等待被唤醒，或者直到等待的时限到期。能让线程处于限时等待状态的操作大致有以下几种：
  * <p>              （1）Thread.sleep(int n)：使得当前线程进入限时等待状态，等待时间为n毫秒。
  * <p>              （2）Object.wait()：带时限的抢占对象的monitor锁。（3）Thread.join()：带时限的线程合并。
  * <p>              （4）LockSupport.parkNanos()：让线程等待，时间以纳秒为单位。
