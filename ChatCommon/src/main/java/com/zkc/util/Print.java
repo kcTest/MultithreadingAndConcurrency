@@ -34,4 +34,14 @@ public class Print {
 		});
 		
 	}
+	
+	/**
+	 * 带线程名 类名 方法名
+	 */
+	public static void tcfo(String s) {
+		String info = "[" + Thread.currentThread().getName() + "|" + ReflectionUtil.getCallClassMethod() + "]";
+		ThreadUtil.sqlExecute(() -> {
+			System.out.println(info + ": " + s);
+		});
+	}
 }
