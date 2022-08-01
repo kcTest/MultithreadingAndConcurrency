@@ -23,4 +23,15 @@ public class Print {
 	public static void syncTco(String msg) {
 		System.out.println("[" + Thread.currentThread().getName() + "]" + ": " + msg);
 	}
+	
+	/**
+	 * 带方法名输出
+	 */
+	public static void fo(Object s) {
+		String info = "[" + ReflectionUtil.getCallClassMethod() + "]";
+		ThreadUtil.sqlExecute(() -> {
+			System.out.println(info + ": " + s);
+		});
+		
+	}
 }
