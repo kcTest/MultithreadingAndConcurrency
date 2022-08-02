@@ -1,4 +1,4 @@
-package com.zkc.intrinsicLock;
+package com.zkc.intrinsicLock.producerConsumer;
 
 import com.zkc.util.Print;
 
@@ -6,7 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NotSafeDataBuffer<T> {
+/**
+ * 安全的数据缓存区类
+ * 在其add(…)和fetch()两个实例方法的public声明后面加上synchronized关键字即可
+ */
+public class SafeDataBuffer<T> {
 	
 	/**
 	 * 最大容量
@@ -24,7 +28,7 @@ public class NotSafeDataBuffer<T> {
 	/**
 	 * 向队列增加一个元素
 	 */
-	public void add(T element) throws Exception {
+	public synchronized void add(T element) throws Exception {
 		if (amount.get() > CAPACITY) {
 			Print.tcfo("队列已满");
 			return;
@@ -41,7 +45,7 @@ public class NotSafeDataBuffer<T> {
 	/**
 	 * 从队列取出一个元素
 	 */
-	public T fetch() throws Exception {
+	public synchronized T fetch() throws Exception {
 		if (amount.get() <= 0) {
 			Print.tcfo("队列为空");
 			return null;

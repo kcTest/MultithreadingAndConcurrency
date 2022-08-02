@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 消费者定义
+ * Consumer类组合了一个Callable类型的成员action实例，action代表了消费者所需要执行的实际消耗动作
  */
 public class Consumer implements Runnable {
 	

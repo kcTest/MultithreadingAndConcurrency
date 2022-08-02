@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 生产者定义
+ * Producer类组合了一个Callable类型的成员action实例，action代表了生产数据所需要执行的实际动作
  */
 public class Producer implements Runnable {
 	
