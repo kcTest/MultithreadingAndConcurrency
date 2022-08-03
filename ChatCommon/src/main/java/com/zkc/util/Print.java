@@ -1,5 +1,7 @@
 package com.zkc.util;
 
+import java.util.Scanner;
+
 public class Print {
 	
 	/**
@@ -43,5 +45,12 @@ public class Print {
 		ThreadUtil.sqlExecute(() -> {
 			System.out.println(info + ": " + s);
 		});
+	}
+	
+	public static String consoleInput() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please Enter ");
+		String s = scanner.nextLine();
+		return s;
 	}
 }
