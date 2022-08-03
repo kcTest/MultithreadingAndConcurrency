@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * 在争用激烈的场景下，轻量级锁会膨胀为基于操作系统内核互斥锁实现的重量级锁
  */
-public class HeavyLockDemo {
+public class FatLockDemo {
 	
 	public static void main(String[] args) throws InterruptedException {
 		Print.tcfo(VM.current().details());
@@ -69,7 +69,7 @@ Space losses: 0 bytes internal + 0 bytes external = 0 bytes total
 		};
 		new Thread(targetTask2, "thinLock-demo-thread1").start();
 		ThreadUtil.sleepMilliseconds(100);
-		new Thread(targetTask2, "thinLock-demo-thread2").start();
+		new Thread(targetTask2, "fatLock-demo-thread2").start();
 		
 		//等待加锁线程执行完成
 		latch.await();
