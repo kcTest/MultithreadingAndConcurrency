@@ -35,8 +35,7 @@ public class WaitNotifyStoreDemo {
 		//消费者执行的动作
 		Callable<IGoods> consumerAction = () -> {
 			//获取商品
-			IGoods goods = dataBuffer.fetch();
-			return goods;
+			return dataBuffer.fetch();
 		};
 		
 		//同时并发执行的线程数
@@ -68,6 +67,7 @@ public class WaitNotifyStoreDemo {
 		
 		//向数据区增加元素
 		public void add(T element) throws Exception {
+			//避免空轮询导致CPU时间片浪费
 			while (amount > CAPACITY) {
 				synchronized (NOT_FULL) {
 					Print.tcfo("队列已满 无法添加");
@@ -87,6 +87,7 @@ public class WaitNotifyStoreDemo {
 		
 		//从数据区中取元素
 		public T fetch() throws Exception {
+			//避免空轮询导致CPU时间片浪费
 			while (amount <= 0) {
 				synchronized (NOT_EMPTY) {
 					Print.tcfo("队列已空 无法读取");
