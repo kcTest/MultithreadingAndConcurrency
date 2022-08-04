@@ -15,7 +15,7 @@ public class Print {
 		});
 	}
 	
-	public static void tco(String msg) {
+	public static void tco(Object msg) {
 		String s = "[" + Thread.currentThread().getName() + "]" + ": " + msg;
 		ThreadUtil.sqlExecute(() -> {
 			System.out.println(s);
@@ -34,7 +34,6 @@ public class Print {
 		ThreadUtil.sqlExecute(() -> {
 			System.out.println(info + ": " + s);
 		});
-		
 	}
 	
 	/**
@@ -50,7 +49,6 @@ public class Print {
 	public static String consoleInput() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please Enter ");
-		String s = scanner.nextLine();
-		return s;
+		return scanner.nextLine();
 	}
 }
