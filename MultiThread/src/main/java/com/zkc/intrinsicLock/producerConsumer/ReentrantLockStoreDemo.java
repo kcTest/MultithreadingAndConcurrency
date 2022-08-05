@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class WaitNotifyStoreDemo {
+public class ReentrantLockStoreDemo {
 	
 	public static void main(String[] args) {
 		Print.cfo("当前进程ID：" + JvmUtil.getProcessId());
@@ -60,27 +63,30 @@ public class WaitNotifyStoreDemo {
 	static class DataBuffer<T> {
 		private final List<T> dataList = new LinkedList<>();
 		private int amount = 0;
-		private static final Object LOCK_OBJECT = new Object();
-		private static final Object NOT_FULL = new Object();
-		private static final Object NOT_EMPTY = new Object();
+		private static final Lock LOCK_OBJECT = new ReentrantLock();
+		private static final Condition NOT_FULL = LOCK_OBJECT.newCondition();
+		private static final Condition NOT_EMPTY = LOCK_OBJECT.newCondition();
 		
 		//向数据区增加元素
 		public void add(T element) throws Exception {
 			//避免空轮询导致CPU时间片浪费
 			while (amount > CAPACITY) {
-				synchronized (NOT_FULL) {
+				LOCK_OBJECT.lock();
+				try {
 					Print.tcfo("队列已满 无法添加");
 					//等待未满通知
-					NOT_FULL.wait();
+					NOT_FULL.await();
+				} finally {
+					LOCK_OBJECT.unlock();
 				}
 			}
-			synchronized (LOCK_OBJECT) {
+			LOCK_OBJECT.lock();
+			try {
 				dataList.add(element);
 				amount++;
-			}
-			synchronized (NOT_EMPTY) {
-				//发送非空通知
-				NOT_EMPTY.notify();
+				NOT_EMPTY.signal();
+			} finally {
+				LOCK_OBJECT.unlock();
 			}
 		}
 		
@@ -88,20 +94,23 @@ public class WaitNotifyStoreDemo {
 		public T fetch() throws Exception {
 			//避免空轮询导致CPU时间片浪费
 			while (amount <= 0) {
-				synchronized (NOT_EMPTY) {
+				LOCK_OBJECT.lock();
+				try {
 					Print.tcfo("队列已空 无法读取");
 					//等待非空通知
-					NOT_EMPTY.wait();
+					NOT_EMPTY.await();
+				} finally {
+					LOCK_OBJECT.unlock();
 				}
 			}
 			T element;
-			synchronized (LOCK_OBJECT) {
+			LOCK_OBJECT.lock();
+			try {
 				element = dataList.remove(0);
 				amount--;
-			}
-			synchronized (NOT_FULL) {
-				//发送未满通知
-				NOT_FULL.notify();
+				NOT_FULL.signal();
+			} finally {
+				LOCK_OBJECT.unlock();
 			}
 			return element;
 		}

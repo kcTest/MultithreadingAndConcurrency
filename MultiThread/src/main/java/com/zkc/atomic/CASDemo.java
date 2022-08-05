@@ -44,7 +44,10 @@ public class CASDemo {
 	private static class OptimisticLockPlus {
 		
 		/**
-		 * volatile关键字可以保证任何线程在任何时刻总能拿到该变量的最新值，其目的在于保障变量值的线程可见性
+		 * 关键字volatile修饰的内存可见变量而言，具有两个重要的语义：
+		 * （1）使用volatile修饰的变量在变量值发生改变时，会立刻同步到主存，并使其他线程的变量副本失效。
+		 * （2）禁止指令重排序：用volatile修饰的变量在硬件层面上会通过在指令前后加入内存屏障来实现
+		 * 对于复合操作，volatile变量无法保障其原子性
 		 */
 		private volatile int val;
 		/**
