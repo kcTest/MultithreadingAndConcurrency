@@ -254,4 +254,11 @@ public class ThreadUtil {
 			);
 		}
 	}
+	
+	/**
+	 * 固定频率执行任务
+	 */
+	public static void scheduleAtFixRate(Runnable command, int i, TimeUnit timeUnit) {
+		getSeqOrScheduledExecutorService().scheduleAtFixedRate(command, i, i, timeUnit);
+	}
 }
