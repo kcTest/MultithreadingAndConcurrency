@@ -36,7 +36,7 @@ import java.util.Set;
  * <p>
  * 演示线程状态
  */
-public class StatusDemo {
+public class StatusDemo01 {
 	
 	public static void main(String[] args) {
 		addStatusThread(Thread.currentThread());
