@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.zkc</groupId>
-            <artifactId>ChatCommon</artifactId>
+            <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

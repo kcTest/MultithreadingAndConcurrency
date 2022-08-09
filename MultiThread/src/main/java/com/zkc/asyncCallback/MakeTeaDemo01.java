@@ -1,6 +1,6 @@
 package com.zkc.asyncCallback;
 
-import com.zkc.util.Logger;
+import com.zkc.util.Print;
 
 /**
  * 调用join()实现一个异步阻塞版本的泡茶
@@ -24,11 +24,11 @@ public class MakeTeaDemo01 {
 			hotWaterThead.join();
 			//合并清洗线程
 			washThead.join();
-			Logger.info("泡茶喝");
+			Print.tco("泡茶喝");
 		} catch (InterruptedException e) {
-			Logger.info(Thread.currentThread().getName() + " 发生异常被中断");
+			Print.tco(Thread.currentThread().getName() + " 发生异常被中断");
 		}
-		Logger.info(Thread.currentThread().getName() + " 运行结束.");
+		Print.tco(Thread.currentThread().getName() + " 运行结束.");
 	}
 	
 	private static final int SLEEP_GAP = 500;
@@ -41,16 +41,16 @@ public class MakeTeaDemo01 {
 		
 		@Override
 		public void run() {
-			Logger.info("洗好水壶");
-			Logger.info("灌上凉水");
-			Logger.info("放在火上");
+			Print.tco("洗好水壶");
+			Print.tco("灌上凉水");
+			Print.tco("放在火上");
 			try {
 				Thread.sleep(SLEEP_GAP);
 			} catch (InterruptedException e) {
-				Logger.info(" 烧水过程发生异常 被中断");
+				Print.tco(" 烧水过程发生异常 被中断");
 			}
-			Logger.info("水开了");
-			Logger.info(" 运行结束.");
+			Print.tco("水开了");
+			Print.tco(" 运行结束.");
 		}
 	}
 	
@@ -62,16 +62,16 @@ public class MakeTeaDemo01 {
 		
 		@Override
 		public void run() {
-			Logger.info("洗茶壶");
-			Logger.info("洗茶杯");
-			Logger.info("拿茶叶");
+			Print.tco("洗茶壶");
+			Print.tco("洗茶杯");
+			Print.tco("拿茶叶");
 			try {
 				Thread.sleep(SLEEP_GAP);
 			} catch (InterruptedException e) {
-				Logger.info(" 清洗过程发生异常 被中断");
+				Print.tco(" 清洗过程发生异常 被中断");
 			}
-			Logger.info("洗完了");
-			Logger.info(" 运行结束.");
+			Print.tco("洗完了");
+			Print.tco(" 运行结束.");
 		}
 	}
 	

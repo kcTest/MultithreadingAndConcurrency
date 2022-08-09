@@ -1,6 +1,5 @@
 package com.zkc.intrinsicLock;
 
-import com.zkc.util.ByteUtil;
 import com.zkc.util.Print;
 import org.openjdk.jol.info.ClassLayout;
 
