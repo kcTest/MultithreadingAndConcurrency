@@ -19,7 +19,7 @@ public class ClientDemo01 {
 	
 	public static void main(String[] args) throws IOException {
 		//数据缓冲区
-		ByteBuffer buffer = ByteBuffer.allocate(32);
+		ByteBuffer buffer = ByteBuffer.allocate(64);
 		//创建客户端  
 		SocketChannel sc = SocketChannel.open();
 		//监听端口
