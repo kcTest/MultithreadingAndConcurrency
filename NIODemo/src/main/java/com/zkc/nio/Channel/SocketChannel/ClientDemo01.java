@@ -28,11 +28,15 @@ public class ClientDemo01 {
 		Scanner scanner = new Scanner(System.in);
 		while (scanner.hasNext()) {
 			String s = scanner.nextLine();
+			if ("exit".equals(s)) {
+				break;
+			}
 			buffer.put(StandardCharsets.UTF_8.encode(s));
 			buffer.flip();
 			sc.write(buffer);
 			buffer.clear();
 		}
+		sc.close();
 		LOGGER.info("结束...");
 	}
 }
