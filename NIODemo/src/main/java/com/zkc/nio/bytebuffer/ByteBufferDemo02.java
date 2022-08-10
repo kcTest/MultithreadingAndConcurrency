@@ -15,7 +15,7 @@ public class ByteBufferDemo02 {
 	public static void main(String[] args) {
 		//获取FileChannel 1、I/O流 2、RandomAccessFile
 		try {
-			URL url = ByteBufferDemo02.class.getClassLoader().getResource("data.txt");
+			URL url = ByteBufferDemo02.class.getClassLoader().getResource("data01.txt");
 			if (url == null || url.getPath().length() == 0) {
 				LOGGER.error("文件路径不存在");
 				return;
