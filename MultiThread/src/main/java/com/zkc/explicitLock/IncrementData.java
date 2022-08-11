@@ -1,5 +1,8 @@
 package com.zkc.explicitLock;
 
+import com.zkc.util.Print;
+import com.zkc.util.ThreadUtil;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
@@ -14,6 +17,9 @@ public class IncrementData {
 	
 	public static void lockAndFastIncrease03(Lock lock) {
 		//1、限时抢锁，在抢锁时会进行一段时间的阻塞等待，其中的time参数代表最大的阻塞时长，unit参数为时长的单位（如秒）
+/*
+阻塞式“限时抢占”（在timeout时间内）锁抢占过程中会处理Thread.interrupt()中断信号，如果线程被中断，就会终止抢占并抛出InterruptedException异常
+ */
 		try {
 			if (lock.tryLock(1, TimeUnit.SECONDS)) {
 				try {
@@ -68,6 +74,32 @@ public class IncrementData {
 			//3、释放锁
 			lock.unlock();
 		}
+	}
+	
+	public static void lockInterruptiblyAndIncrease(Lock lock) {
+		Print.syncTco(" 开始抢占锁");
+		try {
+			/*
+			可中断抢占锁抢占过程中会处理Thread.interrupt()中断信号，如果线程被中断，就会终止抢占并抛出InterruptedException异常
+			 */
+			lock.lockInterruptibly();
+		} catch (InterruptedException e) {
+			Print.syncTco("抢占被中断，抢锁失败");
+			return;
+		}
+		try {
+			Print.syncTco("抢到了锁，同步执行1s");
+			ThreadUtil.sleepMilliseconds(1000);
+			sum++;
+			if (Thread.currentThread().isInterrupted()) {
+				Print.syncTco("同步执行被中断");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+		
 	}
 	
 }
