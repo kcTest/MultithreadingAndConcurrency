@@ -1,4 +1,4 @@
-package com.zkc.nio.Channel.FileChannel;
+package com.zkc.nio.channel.FileChannel;
 
 import com.zkc.nio.ScatteringReadDemo;
 import org.slf4j.Logger;

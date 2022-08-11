@@ -15,7 +15,7 @@ import java.util.Iterator;
 import static com.zkc.nio.util.ByteBufferUtil.debugAll;
 
 /**
- * 非阻塞模式 selector
+ * 非阻塞模式 selector 单线程处理
  */
 public class ServerDemo03 {
 	
@@ -37,7 +37,7 @@ public class ServerDemo03 {
 		LOGGER.info("绑定的key: " + serverKey);
 		
 		while (true) {
-			//select方法 没有事件发生阻塞 ； 如果有事件需要处理火取消，否则存在未处理select可以恢复运行 继续不停循环 
+			//select方法 没有事件发生阻塞 ； 如果有事件需要处理或取消，否则存在未处理select可以恢复运行 继续不停循环 
 			selector.select();
 			//获取所有可处理的事件集合 
 			Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();

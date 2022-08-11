@@ -1,4 +1,4 @@
-package com.zkc.nio.Channel.SocketChannel;
+package com.zkc.nio.channel.SocketChannel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class ClientDemo01 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo01.class);
 	
 	public static void main(String[] args) throws IOException {
-		//数据缓冲区
+		//数据缓冲区 
 		ByteBuffer buffer = ByteBuffer.allocate(64);
 		//创建客户端  
 		SocketChannel sc = SocketChannel.open();
