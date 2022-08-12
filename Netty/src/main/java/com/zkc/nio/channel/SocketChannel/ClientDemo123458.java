@@ -13,13 +13,13 @@ import java.util.Scanner;
 /**
  * 阻塞模式 单线程
  */
-public class ClientDemo01 {
+public class ClientDemo123458 {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo01.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo123458.class);
 	
 	public static void main(String[] args) throws IOException {
-		//数据缓冲区 
-		ByteBuffer buffer = ByteBuffer.allocate(64);
+		//数据缓冲区
+		ByteBuffer buffer = ByteBuffer.allocate(16);
 		//创建客户端  
 		SocketChannel sc = SocketChannel.open();
 		//监听端口

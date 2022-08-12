@@ -13,9 +13,9 @@ import java.nio.channels.SocketChannel;
  * <p>
  * 接收数据
  */
-public class ClientDemo02 {
+public class ClientDemo67 {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo02.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo67.class);
 	
 	public static void main(String[] args) throws IOException {
 		SocketChannel sc = SocketChannel.open();
