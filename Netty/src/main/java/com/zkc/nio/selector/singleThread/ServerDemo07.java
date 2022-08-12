@@ -1,4 +1,4 @@
-package com.zkc.nio.selector;
+package com.zkc.nio.selector.singleThread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 /**
- * 非阻塞模式 selector 单线程处理
+ * 非阻塞模式 selector 单线程处理 多路复用
  * <p>
  * 向客户端的发送大量数据 分多次写
  */
@@ -31,6 +31,7 @@ public class ServerDemo07 {
 		ssc.register(selector, SelectionKey.OP_ACCEPT);
 		
 		while (true) {
+			//wakeup唤醒、 选择器close、线程interrupt
 			selector.select();
 			Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
 			while (iterator.hasNext()) {
@@ -50,7 +51,7 @@ public class ServerDemo07 {
 					LOGGER.info("write len:" + write);
 					//  先发送  不循环等待是否可写 检查是否还有未发送的数据 
 					if (buffer.hasRemaining()) {
-						//设置关注可写事件（与原有事件合并）等触发可写事件后再继续写
+						//一次没有写完 设置关注可写事件（与原有事件合并）之后 会再次触发可写事件 再继续写  
 						clientKey.interestOps(SelectionKey.OP_WRITE | clientKey.interestOps());
 						//将未写完的数据作为key的附件 下次可写时取出
 						clientKey.attach(buffer);

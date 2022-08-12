@@ -1,4 +1,4 @@
-package com.zkc.nio.selector;
+package com.zkc.nio.selector.singleThread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 /**
- * 非阻塞模式 selector 单线程处理
+ * 非阻塞模式 selector 单线程处理 多路复用
  * <p>
  * 向客户端的发送大量数据
  */
