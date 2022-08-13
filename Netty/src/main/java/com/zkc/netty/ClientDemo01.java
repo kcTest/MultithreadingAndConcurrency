@@ -38,6 +38,8 @@ public class ClientDemo01 {
 		while (scanner.hasNext()) {
 			String msg = scanner.nextLine();
 			channel.writeAndFlush(msg);
+//			channel.write(msg);
+//			channel.flush();
 		}
 	}
 	
