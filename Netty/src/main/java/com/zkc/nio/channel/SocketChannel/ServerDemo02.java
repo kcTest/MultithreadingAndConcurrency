@@ -32,7 +32,7 @@ public class ServerDemo02 {
 			//非阻塞下直接返回当前结果 继续向下执行 没有连接 sc直接返回Null
 			SocketChannel sc = ssc.accept();
 			if (sc != null) {
-				LOGGER.info("已连接 " + sc);
+				LOGGER.debug("已连接 " + sc);
 				//客户端连接也改为非阻塞模式
 				sc.configureBlocking(false);
 				channels.add(sc);
@@ -46,7 +46,7 @@ public class ServerDemo02 {
 				buffer.flip();
 				debugAll(buffer);
 				buffer.clear();
-				LOGGER.info("读取后 " + curSc);
+				LOGGER.debug("读取后 " + curSc);
 			}
 		}
 		

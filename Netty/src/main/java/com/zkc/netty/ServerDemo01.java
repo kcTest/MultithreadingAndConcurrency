@@ -41,7 +41,7 @@ public class ServerDemo01 {
 											@Override
 											public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 												//消息已被StringDecoder转换
-												LOGGER.info(msg.toString());
+												LOGGER.debug(msg.toString());
 											}
 										});
 							}

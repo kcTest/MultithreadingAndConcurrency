@@ -50,7 +50,7 @@ public class ServerDemo06 {
 					while (buffer.hasRemaining()) {
 						//获取实际写入字节数
 						int write = clientChannel.write(buffer);
-						LOGGER.info(String.valueOf(write));
+						LOGGER.debug(String.valueOf(write));
 					}
 				}
 				iterator.remove();

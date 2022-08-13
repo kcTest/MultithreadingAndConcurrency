@@ -37,7 +37,7 @@ public class ServerDemo07 {
 			while (iterator.hasNext()) {
 				SelectionKey curKey = iterator.next();
 				if (curKey.isAcceptable()) {
-					LOGGER.info("isAcceptable");
+					LOGGER.debug("isAcceptable");
 					SocketChannel clientChannel = ssc.accept();
 					clientChannel.configureBlocking(false);
 					SelectionKey clientKey = clientChannel.register(selector, 0, null);
@@ -48,7 +48,7 @@ public class ServerDemo07 {
 					}
 					ByteBuffer buffer = StandardCharsets.UTF_8.encode(sb.toString());
 					int write = clientChannel.write(buffer);
-					LOGGER.info("write len:" + write);
+					LOGGER.debug("write len:" + write);
 					//  先发送  不循环等待是否可写 检查是否还有未发送的数据 
 					if (buffer.hasRemaining()) {
 						//一次没有写完 设置关注可写事件（与原有事件合并）之后 会再次触发可写事件 再继续写  
@@ -57,12 +57,12 @@ public class ServerDemo07 {
 						clientKey.attach(buffer);
 					}
 				} else if (curKey.isWritable()) {
-					LOGGER.info("isWritable");
+					LOGGER.debug("isWritable");
 					//取出未发送完的数据 继续写
 					ByteBuffer buffer = (ByteBuffer) curKey.attachment();
 					SocketChannel clientChannel = (SocketChannel) curKey.channel();
 					int write = clientChannel.write(buffer);
-					LOGGER.info("write len:" + write);
+					LOGGER.debug("write len:" + write);
 					//清理buffer附件
 					if (!buffer.hasRemaining()) {
 						curKey.attach(null);

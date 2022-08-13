@@ -35,14 +35,14 @@ public class ServerDemo04 {
 		
 		SelectionKey serverKey = ssc.register(selector, 0, null);
 		serverKey.interestOps(SelectionKey.OP_ACCEPT);
-		LOGGER.info("绑定的key: " + serverKey);
+		LOGGER.debug("绑定的key: " + serverKey);
 		
 		while (true) {
 			selector.select();
 			Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
 			while (iterator.hasNext()) {
 				SelectionKey curKey = iterator.next();
-				LOGGER.info("当前处理的key: " + curKey);
+				LOGGER.debug("当前处理的key: " + curKey);
 				if (curKey.isAcceptable()) {
 					ServerSocketChannel serverChannel = (ServerSocketChannel) curKey.channel();
 					
@@ -51,7 +51,7 @@ public class ServerDemo04 {
 					SelectionKey clientKey = clientChannel.register(selector, 0, null);
 					clientKey.interestOps(SelectionKey.OP_READ);
 					
-					LOGGER.info("当前客户端sc: " + clientChannel);
+					LOGGER.debug("当前客户端sc: " + clientChannel);
 				} else if (curKey.isReadable()) {
 					
 					try {
@@ -88,7 +88,7 @@ public class ServerDemo04 {
 					byte b = from.get();
 					if (b == '|') {
 						to.flip();
-						LOGGER.info(StandardCharsets.UTF_8.decode(to).toString());
+						LOGGER.debug(StandardCharsets.UTF_8.decode(to).toString());
 						break;
 					} else {
 						to.put(b);

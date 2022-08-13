@@ -41,7 +41,7 @@ public class ServerDemo02 {
 									@Override
 									public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 										ByteBuf buf = (ByteBuf) msg;
-										LOGGER.info(buf.toString(StandardCharsets.UTF_8));
+										LOGGER.debug(buf.toString(StandardCharsets.UTF_8));
 										/* 调用下一个处理器 传递消息 （下一个使用独立的group不能在当前线程直接调用 内部会切换线程） */
 										ctx.fireChannelRead(msg);
 									}
@@ -51,7 +51,7 @@ public class ServerDemo02 {
 									@Override
 									public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 										ByteBuf buf = (ByteBuf) msg;
-										LOGGER.info(buf.toString(StandardCharsets.UTF_8));
+										LOGGER.debug(buf.toString(StandardCharsets.UTF_8));
 									}
 								});
 					}

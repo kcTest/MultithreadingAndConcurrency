@@ -34,7 +34,7 @@ public class ServerDemo03 {
 		SelectionKey serverKey = ssc.register(selector, 0, null);
 		//设置要关注的事件类型   ServerSocketChannel关注是否有连入的请求
 		serverKey.interestOps(SelectionKey.OP_ACCEPT);
-		LOGGER.info("绑定的key: " + serverKey);
+		LOGGER.debug("绑定的key: " + serverKey);
 		
 		while (true) {
 			//select方法 没有事件发生阻塞 ； 如果有事件需要处理或取消，否则存在未处理select可以恢复运行 继续不停循环 
@@ -44,7 +44,7 @@ public class ServerDemo03 {
 			//遍历处理当前事件后再删除
 			while (iterator.hasNext()) {
 				SelectionKey curKey = iterator.next();
-				LOGGER.info("当前处理的key: " + curKey);
+				LOGGER.debug("当前处理的key: " + curKey);
 				//区分事件类型
 				if (curKey.isAcceptable()) {
 					//处理客户端连接请求
@@ -61,7 +61,7 @@ public class ServerDemo03 {
 					//设置要关注的事件类型
 					clientKey.interestOps(SelectionKey.OP_READ);
 					
-					LOGGER.info("当前客户端sc: " + clientChannel);
+					LOGGER.debug("当前客户端sc: " + clientChannel);
 				} else if (curKey.isReadable()) {
 					//读取客户端发送过来的数据  客户端关闭也会触发
 					

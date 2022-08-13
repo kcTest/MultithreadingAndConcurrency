@@ -13,9 +13,9 @@ import java.util.Scanner;
 /**
  * 阻塞模式 单线程
  */
-public class ClientDemo123458 {
+public class ClientDemo1234589 {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo123458.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientDemo1234589.class);
 	
 	public static void main(String[] args) throws IOException {
 		//数据缓冲区
@@ -24,7 +24,7 @@ public class ClientDemo123458 {
 		SocketChannel sc = SocketChannel.open();
 		//监听端口
 		sc.connect(new InetSocketAddress(8080));
-		LOGGER.info("输入...");
+		LOGGER.debug("输入...");
 		Scanner scanner = new Scanner(System.in);
 		while (scanner.hasNext()) {
 			String s = scanner.nextLine();
@@ -37,6 +37,6 @@ public class ClientDemo123458 {
 			buffer.clear();
 		}
 		sc.close();
-		LOGGER.info("结束...");
+		LOGGER.debug("结束...");
 	}
 }

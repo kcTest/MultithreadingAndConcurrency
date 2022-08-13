@@ -20,20 +20,20 @@ public class DirectoryTranverseDemo02 {
 			Files.walkFileTree(Paths.get("E:\\QQMusicCache\\Log"), new SimpleFileVisitor<Path>() {
 				@Override
 				public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-					LOGGER.info("===>" + dir);
+					LOGGER.debug("===>" + dir);
 					return super.preVisitDirectory(dir, attrs);
 				}
 				
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					LOGGER.info("delete-----" + file);
+					LOGGER.debug("delete-----" + file);
 					Files.delete(file);
 					return super.visitFile(file, attrs);
 				}
 				
 				@Override
 				public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-					LOGGER.info("delete====" + dir);
+					LOGGER.debug("delete====" + dir);
 					Files.delete(dir);
 					return super.postVisitDirectory(dir, exc);
 				}

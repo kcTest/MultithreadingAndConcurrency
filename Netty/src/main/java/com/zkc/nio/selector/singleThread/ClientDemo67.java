@@ -25,7 +25,7 @@ public class ClientDemo67 {
 		while (true) {
 			ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
 			read += sc.read(buffer);
-			LOGGER.info("read: " + read);
+			LOGGER.debug("read: " + read);
 			buffer.clear();
 		}
 	}

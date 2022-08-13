@@ -31,19 +31,19 @@ public class ServerDemo01 {
 		List<SocketChannel> channels = new ArrayList<>();
 		while (true) {
 			//建立客户端连接
-			LOGGER.info("正在建立连接...");
+			LOGGER.debug("正在建立连接...");
 			//没有连接会阻塞住 影响其它客户端的信息读取
 			SocketChannel sc = ssc.accept();
-			LOGGER.info("已连接");
+			LOGGER.debug("已连接");
 			channels.add(sc);
 			for (SocketChannel channel : channels) {
-				LOGGER.info("读取前 " + channel);
+				LOGGER.debug("读取前 " + channel);
 				//读不到数据会阻塞 影响其它客户端的连接
 				channel.read(buffer);
 				buffer.flip();
 				debugAll(buffer);
 				buffer.clear();
-				LOGGER.info("读取后 " + channel);
+				LOGGER.debug("读取后 " + channel);
 			}
 		}
 		

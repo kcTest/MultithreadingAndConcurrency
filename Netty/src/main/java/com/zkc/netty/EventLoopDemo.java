@@ -25,7 +25,7 @@ public class EventLoopDemo {
 		System.out.println(group2.next());
 		System.out.println(group2.next());
 		
-		LOGGER.info("START");
+		LOGGER.debug("START");
 //		/* 3、执行普通任务 */
 //		group2.next().submit(() -> {
 //			LockSupport.parkNanos(1000 * 1000 * 1000);
@@ -38,6 +38,6 @@ public class EventLoopDemo {
 		}, 0, 2, TimeUnit.SECONDS);
 		
 		
-		LOGGER.info("END");
+		LOGGER.debug("END");
 	}
 }

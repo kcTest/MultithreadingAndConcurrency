@@ -26,14 +26,14 @@ public class DirectoryCopyDemo01 {
 				
 				@Override
 				public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-					LOGGER.info("===>" + dir);
+					LOGGER.debug("===>" + dir);
 					dirCount.incrementAndGet();
 					return super.preVisitDirectory(dir, attrs);
 				}
 				
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-					LOGGER.info("-----" + file);
+					LOGGER.debug("-----" + file);
 					fileCount.incrementAndGet();
 					if (file.toString().endsWith("jar")) {
 						jarFileCount.incrementAndGet();
@@ -42,7 +42,7 @@ public class DirectoryCopyDemo01 {
 				}
 			});
 			
-			LOGGER.info("dirCount:" + dirCount + " fileCount:" + fileCount + " jarFileCount:" + jarFileCount);
+			LOGGER.debug("dirCount:" + dirCount + " fileCount:" + fileCount + " jarFileCount:" + jarFileCount);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

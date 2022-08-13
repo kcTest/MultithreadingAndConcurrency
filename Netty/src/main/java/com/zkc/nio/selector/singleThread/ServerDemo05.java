@@ -36,14 +36,14 @@ public class ServerDemo05 {
 		
 		SelectionKey serverKey = ssc.register(selector, 0, null);
 		serverKey.interestOps(SelectionKey.OP_ACCEPT);
-		LOGGER.info("绑定的key: " + serverKey);
+		LOGGER.debug("绑定的key: " + serverKey);
 		
 		while (true) {
 			selector.select();
 			Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
 			while (iterator.hasNext()) {
 				SelectionKey curKey = iterator.next();
-				LOGGER.info("当前处理的key: " + curKey);
+				LOGGER.debug("当前处理的key: " + curKey);
 				if (curKey.isAcceptable()) {
 					ServerSocketChannel serverChannel = (ServerSocketChannel) curKey.channel();
 					
@@ -55,7 +55,7 @@ public class ServerDemo05 {
 					Buffer buffer = ByteBuffer.allocate(16);
 					clientKey.attach(buffer);
 					
-					LOGGER.info("当前客户端sc: " + clientChannel);
+					LOGGER.debug("当前客户端sc: " + clientChannel);
 				} else if (curKey.isReadable()) {
 					
 					try {
@@ -72,7 +72,7 @@ public class ServerDemo05 {
 							if (buffer.position() == buffer.limit()) {
 								//容量只能增大 复制影响效率
 								ByteBuffer buffer2 = ByteBuffer.allocate(buffer.capacity() * 2);
-								LOGGER.info("new capacity: " + buffer2.capacity());
+								LOGGER.debug("new capacity: " + buffer2.capacity());
 								//复制前 切换原buffer到读模式
 								buffer.flip();
 								buffer2.put(buffer);
@@ -100,7 +100,7 @@ public class ServerDemo05 {
 					byte b = from.get();
 					if (b == '|') {
 						to.flip();
-						LOGGER.info(StandardCharsets.UTF_8.decode(to).toString());
+						LOGGER.debug(StandardCharsets.UTF_8.decode(to).toString());
 						break;
 					} else {
 						to.put(b);
