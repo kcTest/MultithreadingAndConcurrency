@@ -3,7 +3,7 @@ package com.zkc.asyncCallback;
 import com.zkc.util.Print;
 
 /**
- * 调用join()实现一个异步阻塞版本的泡茶
+ * 调用join()实现泡茶
  * <p>
  * 主线程通过分别调用烧水线程和清洗线程的join()方法，等待烧水线程和清洗线程执行完成，然后执行主线程自己的泡茶操作
  * <p>

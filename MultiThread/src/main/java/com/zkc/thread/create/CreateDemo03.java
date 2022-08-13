@@ -19,9 +19,9 @@ import java.util.concurrent.FutureTask;
 public class CreateDemo03 {
 	
 	public static void main(String[] args) throws InterruptedException {
-		ReturnableTask returnableTask = new ReturnableTask();
-		FutureTask<Long> futureTask = new FutureTask<>(returnableTask);
-		Thread thread = new Thread(futureTask, "returnableThread");
+		CallableTask callableTask = new CallableTask();
+		FutureTask<Long> futureTask = new FutureTask<>(callableTask);
+		Thread thread = new Thread(futureTask, "callableThread");
 		thread.start();
 		Thread.sleep(500);
 		Print.cfo(ThreadUtil.getCurThreadName() + " 让子弹飞一会儿");
@@ -41,7 +41,7 @@ public class CreateDemo03 {
 	
 	private static final int COMPUTE_TIMES = 10000000;
 	
-	private static class ReturnableTask implements Callable<Long> {
+	private static class CallableTask implements Callable<Long> {
 		
 		@Override
 		public Long call() throws Exception {

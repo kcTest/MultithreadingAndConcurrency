@@ -9,7 +9,6 @@ import java.util.concurrent.FutureTask;
 /**
  * 使用FutureTask类和Callable接口进行泡茶喝的实战
  * <p>
- * 异步阻塞模式  获取异步结果时，主线程也会被阻塞
  * <p>
  * 主动调用是一种阻塞式调用，它是一种单向调用，“调用方”要等待“被调用方”执行完毕才返回。
  * 如果“被调用方”的执行时间很长，那么“调用方”线程需要阻塞很长一段时间。
@@ -36,7 +35,7 @@ public class MakeTeaDemo02 {
 		
 		//..等待烧水和清洗时 可以做点别的事情
 		try {
-			//异步阻塞模式  获取异步结果时，主线程也会被阻塞
+			//同步阻塞获取异步结果时
 			Boolean waterOk = hotWaterTask.get();
 			Boolean cupOk = washTask.get();
 			if (waterOk && cupOk) {
