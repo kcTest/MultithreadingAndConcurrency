@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 
-import static com.zkc.netty.util.ByteBufUtil.logBB;
+import static com.zkc.netty.util.BufUtil.logBB;
 
 @Slf4j
 public class ByteBufDemo01 {

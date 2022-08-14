@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import static io.netty.buffer.ByteBufUtil.appendPrettyHexDump;
 import static io.netty.util.internal.StringUtil.NEWLINE;
 
-public class ByteBufUtil {
+public class BufUtil {
 	
 	public static void logBB(ByteBuf msg) {
 		String type = msg.getClass().toString();
