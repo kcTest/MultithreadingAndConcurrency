@@ -8,12 +8,15 @@ import static io.netty.util.internal.StringUtil.NEWLINE;
 public class ByteBufUtil {
 	
 	public static void logBB(ByteBuf msg) {
+		String type = msg.getClass().toString();
 		int length = msg.readableBytes();
 		if (length == 0) {
 			StringBuilder buf = new StringBuilder(1 + 4);
 			buf.append(' ').append("capacity: ").append(msg.capacity()).append("  ")
 					.append("readerIndex: ").append(msg.readerIndex()).append("  ")
-					.append("writerIndex: ").append(msg.writerIndex());
+					.append("writerIndex: ").append(msg.writerIndex()).append("  ")
+					.append("type: ").append(type);
+			buf.append(NEWLINE);
 			System.out.println(buf);
 		} else {
 			int outputLength = 2 + 10 + 1;
@@ -23,9 +26,11 @@ public class ByteBufUtil {
 			StringBuilder buf = new StringBuilder(outputLength);
 			buf.append(' ').append("capacity: ").append(msg.capacity()).append("  ")
 					.append("readerIndex: ").append(msg.readerIndex()).append("  ")
-					.append("writerIndex: ").append(msg.writerIndex());
-			buf.append(NEWLINE);
+					.append("writerIndex: ").append(msg.writerIndex()).append("  ")
+					.append("type: ").append(type);
+			
 			appendPrettyHexDump(buf, msg);
+			buf.append(NEWLINE);
 			System.out.println(buf);
 		}
 	}
