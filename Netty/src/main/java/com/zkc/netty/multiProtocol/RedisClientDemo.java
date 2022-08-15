@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets;
  * <p> $单个指令长度\r\n
  * <p> 具体指令\r\n
  */
-public class RedisClientDemo01 {
+public class RedisClientDemo {
 	
 	public static void main(String[] args) {
 		NioEventLoopGroup group = new NioEventLoopGroup();
