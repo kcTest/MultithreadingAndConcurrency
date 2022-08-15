@@ -3,10 +3,7 @@ package com.zkc.netty.multiProtocol;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
@@ -30,6 +27,8 @@ public class RedisClientDemo {
 		try {
 			ChannelFuture channelFuture = new Bootstrap()
 					.group(group)
+					/*超时选项*/
+					.option(ChannelOption.CONNECT_TIMEOUT_MILLIS,3000)
 					.channel(NioSocketChannel.class)
 					.handler(new ChannelInitializer<NioSocketChannel>() {
 						@Override

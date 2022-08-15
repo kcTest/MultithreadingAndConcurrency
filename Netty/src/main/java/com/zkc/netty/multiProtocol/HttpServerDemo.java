@@ -1,10 +1,7 @@
 package com.zkc.netty.multiProtocol;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -33,6 +30,10 @@ public class HttpServerDemo {
 		try {
 			ChannelFuture channelFuture = new ServerBootstrap()
 					.group(acceptGroup, ioGroup)
+//					/*全连接队列个数*/
+//					.option(ChannelOption.SO_BACKLOG, 2)
+//					.Option() NioServerSocketChannel
+//					.childOption() NioSocketChannel
 					.channel(NioServerSocketChannel.class)
 					.childHandler(new ChannelInitializer<NioSocketChannel>() {
 						@Override
