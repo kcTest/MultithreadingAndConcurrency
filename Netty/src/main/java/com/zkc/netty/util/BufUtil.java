@@ -15,7 +15,8 @@ public class BufUtil {
 			buf.append(' ').append("capacity: ").append(msg.capacity()).append("  ")
 					.append("readerIndex: ").append(msg.readerIndex()).append("  ")
 					.append("writerIndex: ").append(msg.writerIndex()).append("  ")
-					.append("type: ").append(type);
+					.append("type: ").append(type).append('\n');
+			
 			buf.append(NEWLINE);
 			System.out.println(buf);
 		} else {
@@ -27,7 +28,7 @@ public class BufUtil {
 			buf.append(' ').append("capacity: ").append(msg.capacity()).append("  ")
 					.append("readerIndex: ").append(msg.readerIndex()).append("  ")
 					.append("writerIndex: ").append(msg.writerIndex()).append("  ")
-					.append("type: ").append(type);
+					.append("type: ").append(type).append('\n');
 			
 			appendPrettyHexDump(buf, msg);
 			buf.append(NEWLINE);
