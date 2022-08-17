@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -57,7 +58,10 @@ public class NettyServer {
 //		    	*/
 //				.childOption(ChannelOption.SO_KEEPALIVE, true)
 //				.childOption(ChannelOption.TCP_NODELAY, true)
-
+//		        /*发送缓冲区和接收缓冲区大小*/
+//				.childOption(ChannelOption.SO_SNDBUF, true)
+//				.childOption(ChannelOption.SO_RCVBUF, true)
+		
 //				/*为客户端Channel维护一个存放自定义数据的Map*/
 //				.childAttr(AttributeKey.newInstance("clientKey"), "value");
 
@@ -75,6 +79,7 @@ public class NettyServer {
 	 * 自动绑定递增端口
 	 */
 	private static void bind(final ServerBootstrap serverBootstrap, final int port) {
+		/*绑定端口会在EventLoop的线程执行*/
 		serverBootstrap.bind(port).addListener(new GenericFutureListener<Future<? super Void>>() {
 			@Override
 			public void operationComplete(Future<? super Void> future) throws Exception {

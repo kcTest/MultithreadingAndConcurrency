@@ -18,6 +18,7 @@ import java.util.Scanner;
 
 /**
  * close gracefully
+ * NIOEventLoop是非守护线程 运行之后 不会主动退出 只有调用shutdown方法才会退出
  */
 public class ClientDemo03 {
 	

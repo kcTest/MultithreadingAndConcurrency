@@ -8,12 +8,13 @@ import com.zkc.chat.server.handler.HeartBeatRequestHandler;
 import com.zkc.chat.server.handler.IMHandler;
 import com.zkc.chat.server.handler.LoginRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -50,11 +51,18 @@ public class NettyServer {
 	}
 	
 	private static void bind(ServerBootstrap serverBootstrap, int port) {
-		serverBootstrap.bind(port).addListener(future -> {
+		ChannelFuture channelFuture = serverBootstrap.bind(port).addListener(future -> {
 			if (future.isSuccess()) {
 				log.info("端口[{}]绑定成功", port);
 			} else {
 				log.error("端口[{}]绑定失败！", port);
+			}
+		});
+		channelFuture.channel().closeFuture().addListener(new ChannelFutureListener() {
+			@Override
+			public void operationComplete(ChannelFuture future) throws Exception {
+				serverBootstrap.config().childGroup().shutdownGracefully();
+				serverBootstrap.config().group().shutdownGracefully();
 			}
 		});
 	}

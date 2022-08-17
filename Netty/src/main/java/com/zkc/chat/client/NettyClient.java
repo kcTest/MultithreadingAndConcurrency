@@ -8,10 +8,7 @@ import com.zkc.chat.codec.Spliter;
 import com.zkc.chat.handler.IMIdleStateHandler;
 import com.zkc.chat.util.SessionUtil;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
@@ -79,6 +76,12 @@ public class NettyClient {
 				if (future.isSuccess()) {
 					log.info("连接成功, 启动控制台线程......");
 					Channel channel = future.channel();
+					channel.closeFuture().addListener(new ChannelFutureListener() {
+						@Override
+						public void operationComplete(ChannelFuture future) throws Exception {
+							bootstrap.config().group().shutdownGracefully();
+						}
+					});
 					startConsoleThread(channel);
 				} else {
 					if (retry == MAX_RETRY) {
