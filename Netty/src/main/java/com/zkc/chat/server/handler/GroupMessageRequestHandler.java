@@ -3,10 +3,12 @@ package com.zkc.chat.server.handler;
 import com.zkc.chat.protocol.request.GroupMessageRequestPacket;
 import com.zkc.chat.protocol.response.GroupMessageResponsePacket;
 import com.zkc.chat.util.SessionUtil;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 
+@ChannelHandler.Sharable
 public class GroupMessageRequestHandler extends SimpleChannelInboundHandler<GroupMessageRequestPacket> {
 	
 	public static final GroupMessageRequestHandler INSTANCE = new GroupMessageRequestHandler();
