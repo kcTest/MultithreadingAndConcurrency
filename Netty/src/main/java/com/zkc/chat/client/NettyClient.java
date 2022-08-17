@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class NettyClient {
 	
 	private static final int MAX_RETRY = 5;
-	private static final String HOST = "localhost";
+	private static final String HOST = "127.0.0.1";
 	private static final int PORT = 8000;
 	
 	public static void main(String[] args) {
@@ -44,13 +44,16 @@ public class NettyClient {
 								.addLast(new IMIdleStateHandler())
 								.addLast(new Spliter())
 								.addLast(PacketCodecHandler.INSTANCE)
+//								.addLast(new LoggingHandler())
 								//处理登录响应
 								.addLast(new LoginResponseHandler())
 								//收消息处理器
 								.addLast(new MessageResponseHandler())
 								//创建群响应处理器
+								.addLast(new CreateGroupResponsehandler())
+								//加群响应处理器
 								.addLast(new JoinGroupResponseHandler())
-								//退群响应处理器你
+								//退群响应处理器
 								.addLast(new QuitGroupResponseHandler())
 								//获取群成员响应处理器
 								.addLast(new ListGroupMembersResponseHandler())

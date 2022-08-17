@@ -13,6 +13,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -38,6 +39,7 @@ public class NettyServer {
 								.addLast(new IMIdleStateHandler())
 								.addLast(new Spliter())
 								.addLast(PacketCodecHandler.INSTANCE)
+//								.addLast(new LoggingHandler())
 								.addLast(LoginRequestHandler.INSTANCE)
 								.addLast(HeartBeatRequestHandler.INSTANCE)
 								.addLast(AuthHandler.INSTANCE)
@@ -52,7 +54,7 @@ public class NettyServer {
 			if (future.isSuccess()) {
 				log.info("端口[{}]绑定成功", port);
 			} else {
-				log.error("端口[{}]绑定失败！");
+				log.error("端口[{}]绑定失败！", port);
 			}
 		});
 	}

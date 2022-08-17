@@ -18,7 +18,13 @@ public class ConsoleCommandManager implements ConsoleCommand {
 	
 	public ConsoleCommandManager() {
 		consoleCommandMap = new HashMap<>();
-		consoleCommandMap.put("sendToUser", new SendToUserConsoleCommand());
+		consoleCommandMap.put("单聊", new SendToUserConsoleCommand());
+		consoleCommandMap.put("登出", new LogoutConsoleCommand());
+		consoleCommandMap.put("建群", new CreateGroupConsoleCommand());
+		consoleCommandMap.put("加群", new JoinGroupConsoleCommand());
+		consoleCommandMap.put("退群", new QuitGroupConsoleCommand());
+		consoleCommandMap.put("群成员", new ListGroupMembersConsoleCommand());
+		consoleCommandMap.put("群聊", new SendToGroupConsoleCommand());
 	}
 	
 	@Override

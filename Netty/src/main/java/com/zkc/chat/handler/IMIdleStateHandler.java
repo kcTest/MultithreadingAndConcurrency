@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class IMIdleStateHandler extends IdleStateHandler {
 	
-	private static final int READER_IDLE_TIME = 15;
+	private static final int READER_IDLE_TIME = 300;//15 ;
 	
 	/**
 	 * 其中第一个参数是读空闲时间，指的是在这段时间内如果没有读到数据，就表示连接假死；

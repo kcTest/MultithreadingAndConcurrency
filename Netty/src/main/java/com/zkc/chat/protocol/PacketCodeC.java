@@ -1,10 +1,15 @@
 package com.zkc.chat.protocol;
 
+import com.zkc.chat.protocol.request.*;
+import com.zkc.chat.protocol.response.*;
 import com.zkc.chat.serializer.Serializer;
+import com.zkc.chat.serializer.impl.JsonSerializer;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.zkc.chat.protocol.command.Command.*;
 
 /**
  * 编解码
@@ -21,19 +26,47 @@ public class PacketCodeC {
 	
 	private PacketCodeC() {
 		packetTypeMap = new HashMap<>();
+		packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
+		packetTypeMap.put(LOGIN_RESPONSE, LoginResponsePacket.class);
+		
+		packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+		packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
+		
+		packetTypeMap.put(LOGOUT_REQUEST, LogoutRequestPacket.class);
+		packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
+		
+		packetTypeMap.put(CREATE_GROUP_REQUEST, CreateGroupRequestPacket.class);
+		packetTypeMap.put(CREATE_GROUP_RESPONSE, CreateGroupResponsePacket.class);
+		
+		packetTypeMap.put(JOIN_GROUP_REQUEST, JoinGroupRequestPacket.class);
+		packetTypeMap.put(JOIN_GROUP_RESPONSE, JoinGroupResponsePacket.class);
+		
+		packetTypeMap.put(QUIT_GROUP_REQUEST, QuitGroupRequestPacket.class);
+		packetTypeMap.put(QUIT_GROUP_RESPONSE, QuitGroupResponsePacket.class);
+		
+		packetTypeMap.put(LIST_GROUP_MEMBERS_REQUEST, ListGroupMembersRequestPacket.class);
+		packetTypeMap.put(LIST_GROUP_MEMBERS_RESPONSE, ListGroupMembersResponsePacket.class);
+		
+		packetTypeMap.put(GROUP_MESSAGE_REQUEST, GroupMessageRequestPacket.class);
+		packetTypeMap.put(GROUP_MESSAGE_RESPONSE, GroupMessageResponsePacket.class);
+		
+		packetTypeMap.put(HEARTBEAT_REQUEST, HeartBeatRequestPacket.class);
+		packetTypeMap.put(HEARTBEAT_RESPONSE, HeartBeatResponsePacket.class);
+		
 		serializerMap = new HashMap<>();
+		JsonSerializer jsonSerializer = new JsonSerializer();
+		serializerMap.put(jsonSerializer.getSerializerAlgorithm(), jsonSerializer);
 	}
 	
 	/**
 	 * 消息发送前 按协议要求填充各部分数据并转成二进制数据
 	 */
-	public void encode(ByteBuf buf,Packet packet) {
+	public void encode(ByteBuf buf, Packet packet) {
 		//创建序列化java对象
 		byte[] bytes = Serializer.DEFAULT.serializer(packet);
 		
 		//填充并转成二进制数据
 		buf.writeInt(MAGIC_NUMBER);
-		buf.writeByte(packet.getVersion());
 		buf.writeByte(packet.getVersion());
 		buf.writeByte(Serializer.DEFAULT.getSerializerAlgorithm());
 		buf.writeByte(packet.getCommand());
