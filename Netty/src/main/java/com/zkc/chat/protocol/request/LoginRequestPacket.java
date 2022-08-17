@@ -1,5 +1,7 @@
-package com.zkc.chat;
+package com.zkc.chat.protocol.request;
 
+import com.zkc.chat.protocol.command.Command;
+import com.zkc.chat.protocol.Packet;
 import lombok.Data;
 
 /**

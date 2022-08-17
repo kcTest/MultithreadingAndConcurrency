@@ -1,4 +1,4 @@
-package com.zkc.chat;
+package com.zkc.chat.protocol;
 
 import lombok.Data;
 

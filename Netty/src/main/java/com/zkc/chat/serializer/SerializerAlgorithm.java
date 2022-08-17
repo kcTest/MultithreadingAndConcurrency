@@ -1,4 +1,4 @@
-package com.zkc.chat;
+package com.zkc.chat.serializer;
 
 /**
  * 序列化算法标识

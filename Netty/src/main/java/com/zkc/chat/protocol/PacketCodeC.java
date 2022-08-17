@@ -1,7 +1,7 @@
-package com.zkc.chat;
+package com.zkc.chat.protocol;
 
+import com.zkc.chat.serializer.Serializer;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class PacketCodeC {
 	
-	private static final int MAGIC_NUMBER = 0X123321;
+	public static final int MAGIC_NUMBER = 0X123321;
 	
 	public static final PacketCodeC INSTANCE = new PacketCodeC();
 	
@@ -27,12 +27,11 @@ public class PacketCodeC {
 	/**
 	 * 消息发送前 按协议要求填充各部分数据并转成二进制数据
 	 */
-	public void encode(Packet packet) {
-		//1、创建ByteBuf对象
-		ByteBuf buf = ByteBufAllocator.DEFAULT.buffer();
-		//2、创建序列化java对象
+	public void encode(ByteBuf buf,Packet packet) {
+		//创建序列化java对象
 		byte[] bytes = Serializer.DEFAULT.serializer(packet);
-		//3、填充并转成二进制数据
+		
+		//填充并转成二进制数据
 		buf.writeInt(MAGIC_NUMBER);
 		buf.writeByte(packet.getVersion());
 		buf.writeByte(packet.getVersion());

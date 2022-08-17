@@ -1,4 +1,6 @@
-package com.zkc.chat;
+package com.zkc.chat.serializer;
+
+import com.zkc.chat.serializer.impl.JsonSerializer;
 
 /**
  * 序列化接口 Java对象转换成二进制数据的规则

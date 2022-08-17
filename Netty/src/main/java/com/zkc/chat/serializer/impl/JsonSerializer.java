@@ -1,6 +1,8 @@
-package com.zkc.chat;
+package com.zkc.chat.serializer.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.zkc.chat.serializer.Serializer;
+import com.zkc.chat.serializer.SerializerAlgorithm;
 
 /**
  * 使用gson
